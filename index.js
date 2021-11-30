@@ -26,8 +26,8 @@ exports.handler = async (event) => {
   let firstname = searchText
   let lastname = searchText
   try {
-    if(searchText.includes(' ')) {
-      const parts = searchText.split(' ')
+    if(searchText.includes('%20')) {
+      const parts = searchText.split('%20')
       firstname = parts[0]
       lastname = parts[1]
     }
