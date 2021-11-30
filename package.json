@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/runntimeterror/hr-enterprise-search#readme",
   "dependencies": {
-    "knex": "^0.95.14"
+    "knex": "^0.95.14",
+    "mysql": "^2.18.1"
   }
 }
