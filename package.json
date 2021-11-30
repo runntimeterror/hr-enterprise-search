@@ -1,0 +1,22 @@
+{
+  "name": "hr-enterprise-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/runntimeterror/hr-enterprise-search.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/runntimeterror/hr-enterprise-search/issues"
+  },
+  "homepage": "https://github.com/runntimeterror/hr-enterprise-search#readme",
+  "dependencies": {
+    "knex": "^0.95.14"
+  }
+}
