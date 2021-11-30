@@ -25,17 +25,17 @@ exports.handler = async (event) => {
   let responseData = {}
   try {
 
-    const matchingNames = await knex.column('emp_no', 'first_name', 'last_name')
+    const matchingNames = await knex.column('id', 'FirstName', 'LastName')
       .select()
-      .from('employees')
-      .where('first_name', 'like', `%${searchText}%`)
-      .orWhere('last_name', 'like', `%${searchText}%`)
+      .from('view_employee_details')
+      .where('FirstName', 'like', `%${searchText}%`)
+      .orWhere('LastName', 'like', `%${searchText}%`)
 
     if (matchingNames.length > 0) {
       responseData.matches = matchingNames.map(record => {
         return {
-          emp_no: record.emp_no,
-          emp_name: `${record.first_name} ${record.last_name}`
+          emp_no: record.id,
+          emp_name: `${record.FirstName} ${record.LastName}`
         }
       })
     }
