@@ -23,14 +23,20 @@ exports.handler = async (event) => {
   };
   const { searchText } = event.pathParameters
   let responseData = {}
+  let firstname = searchText
+  let lastname = searchText
   try {
-
+    if(searchText.includes(' ')) {
+      const parts = searchText.split(' ')
+      firstname = parts[0]
+      lastname = parts[1]
+    }
     const matchingNames = await knex.column('id', 'FirstName', 'LastName')
       .select()
       .limit(10)
       .from('view_employee_details')
-      .where('FirstName', 'like', `%${searchText}%`)
-      .orWhere('LastName', 'like', `%${searchText}%`)
+      .where('FirstName', 'like', `%${firstname}%`)
+      .orWhere('LastName', 'like', `%${lastname}%`)
 
     if (matchingNames.length > 0) {
       responseData.matches = matchingNames.map(record => {
