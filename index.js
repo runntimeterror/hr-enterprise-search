@@ -23,20 +23,26 @@ exports.handler = async (event) => {
   };
   const { searchText } = event.pathParameters
   let responseData = {}
-  let firstname = searchText
-  let lastname = searchText
+  let matchingNames
   try {
     if(searchText.includes('%20')) {
       const parts = searchText.split('%20')
-      firstname = parts[0]
-      lastname = parts[1]
-    }
-    const matchingNames = await knex.column('id', 'FirstName', 'LastName')
+      const firstname = parts[0]
+      const lastname = parts[1]
+      matchingNames = await knex.column('id', 'FirstName', 'LastName')
       .select()
       .limit(10)
       .from('view_employee_details')
       .where('FirstName', 'like', `%${firstname}%`)
-      .orWhere('LastName', 'like', `%${lastname}%`)
+      .andWhere('LastName', 'like', `%${lastname}%`)
+    } else {
+      matchingNames = await knex.column('id', 'FirstName', 'LastName')
+      .select()
+      .limit(10)
+      .from('view_employee_details')
+      .where('FirstName', 'like', `%${searchText}%`)
+      .orWhere('LastName', 'like', `%${searchText}%`)
+    }
 
     if (matchingNames.length > 0) {
       responseData.matches = matchingNames.map(record => {
