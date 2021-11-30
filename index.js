@@ -27,6 +27,7 @@ exports.handler = async (event) => {
 
     const matchingNames = await knex.column('id', 'FirstName', 'LastName')
       .select()
+      .limit(10)
       .from('view_employee_details')
       .where('FirstName', 'like', `%${searchText}%`)
       .orWhere('LastName', 'like', `%${searchText}%`)
