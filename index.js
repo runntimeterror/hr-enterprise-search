@@ -13,7 +13,7 @@ const knex = Knex({
   connection
 })
 
-exports.employeeHistoryHandler = async (event) => {
+exports.handler = async (event) => {
   const response = {
     statusCode: 200,
     headers: {
